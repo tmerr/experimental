@@ -50,7 +50,7 @@ class SpecialNum(object):
                         else:
                             retval = getattr(other, unreflect(name))(self.val)
 
-                    return SpecialNum(self.post_op(retval), post_op, reprfunc)
+                    return SpecialNum(retval, post_op, reprfunc)
                 return implementation
 
             setattr(self.__class__, name, implement(name))
