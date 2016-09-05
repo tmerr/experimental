@@ -49,5 +49,4 @@ in_set example:
 ## Thoughts
 
 - Has the advantage of working for any number-like object
-- Still some operator issues to work out
 - A similar system could be useful for asserting invariants on arbitrary objects
