@@ -6,6 +6,9 @@ This module contains some abstractions of numerical objects.
 def reflect(name):
     return '__r{}'.format(name.lstrip('__'))
 
+def unreflect(name):
+    return '__{}'.format(name.lstrip('__r'))
+
 binary_ops = ['__add__', '__sub__', '__mul__', '__matmul__', '__truediv__',
         '__floordiv__', '__mod__', '__divmod__', '__pow__', '__lshift__',
         '__rshift__', '__and__', '__xor__', '__or__']
@@ -45,7 +48,7 @@ class SpecialNum(object):
                         if name in binary_ops:
                             retval = getattr(other, reflect(name))(self.val)
                         else:
-                            return NotImplemented
+                            retval = getattr(other, unreflect(name))(self.val)
 
                     return SpecialNum(self.post_op(retval), post_op, reprfunc)
                 return implementation
