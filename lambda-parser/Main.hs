@@ -36,7 +36,7 @@ parens = between (text "(") (text ")")
 
 innerTerm, term :: Syntax delta => delta Term
 innerTerm =  variable <$> ident
-         <|> parens term
+         <|> parens (skipSpace *> term <* skipSpace)
 term =  lambda *> (abstraction <$> ident <*> thedot *> sepSpace *> term)
     <|> (foldl application) <$> innerTerm <*> many (sepSpace *> innerTerm)
 
